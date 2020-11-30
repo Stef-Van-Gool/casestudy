@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<!--Stef Van Gool r0740461-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="img/style.css"/>
+    <title>Supermarkt</title>
+</head>
+<body>
+<h1>Nieuwe klant:</h1>
+<form action="/2_Formulier">
+    <div>
+        <label for="voornaam">Voornaam:</label>
+        <input id="voornaam" name="voornaam" class="rounded bg-light" type="text">
+    </div>
+    
+    <div>
+        <label for="familienaam">Familienaam:</label>
+        <input id="familienaam" name="familienaam" class="rounded bg-light" type="text">
+    </div>
+
+    <div>
+        <label for="geboortejaar">Geboortejaar:</label>
+        <input id="geboortejaar" name="geboortejaar" class="rounded bg-light" type="number">
+    </div>
+    
+    <div th:each="supermarkt : ${supermarktenlijst}">
+        <label for="supermarktKeuze"><span th:text="${supermarkt.getNaam()}"></span></label>
+        <input id="supermarktKeuze" name="supermarktKeuze" type="radio" th:checked="${supermarktStat.index} == 0" th:value="${supermarktStat.index}">
+    </div>
+
+    <div>
+        <button type="submit">Ga door als klant met aanmaak klantenkaartnr</button>
+    </div>
+</form>
+
+<p><a href="/">Terug naar de startpagina</a></p>
+</body>
+</html>

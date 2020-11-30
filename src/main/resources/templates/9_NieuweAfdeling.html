@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="nl" xmlns:th="http://www.thymeleaf.org">
+<!--Stef Van Gool r0740461-->
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css%22%3E">
+    <link rel="stylesheet" type="text/css" href="img/style.css"/>
+    <title>Supermarkt</title>
+</head>
+<body>
+<h1>Nieuwe Afdeling:</h1>
+<form action="/10_Afdelingen">
+    <div>
+        <label for="naam">Naam:</label>
+        <input id="naam" name="naam" class="rounded bg-light" type="text">
+    </div>
+
+    <div>
+        <label for="foto">Foto:</label>
+        <input id="foto" name="foto" class="rounded bg-light" type="text">
+    </div>
+
+    <div>
+        <input id="gekoeld" name="gekoeld" type="checkbox">
+        <label for="gekoeld">gekoeld</label>
+    </div>
+
+    <div>
+        <select name="verantwoordelijkeIndex">
+            <option value="-1">Wie is de verantwoordelijke voor deze supermarkt?</option>
+            <option th:each="verantwoordelijke : ${personeellijst}" th:text="${verantwoordelijke.getVoornaam()} + ' ' + ${verantwoordelijke.getFamilienaam()}" th:value="${verantwoordelijkeStat.index}"></option>
+        </select>
+    </div>
+
+    <br>
+
+    <div>
+        <select name="supermarktIndex">
+            <option value="-1">Aan welke supermarkt wil je deze afdeling toevoegen?</option>
+            <option th:each="supermarkt : ${supermarktenlijst}" th:text="${supermarkt.getNaam()}" th:value="${supermarktStat.index}"></option>
+        </select>
+    </div>
+
+    <br>
+
+    <div>
+        <button type="submit">Maak afdeling</button>
+    </div>
+</form>
+
+<p><a href="/">Terug naar de startpagina</a></p>
+</body>
+</html>
